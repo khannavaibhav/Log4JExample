@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="TEST" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/usr/home/log4j/log.out"/>
+		<param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="ANOTHER" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/usr/home/log4j/anotherLog.out"/>
+		<param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="YET" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/usr/home/log4j/yetLog.out"/>
+		<param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="myPkg.AnotherClass" additivity="false">
+	    <level value="debug" />
+	    <appender-ref ref="ANOTHER"/>
+	</logger>
+	<logger name="myPkg.YetAnotherClass" additivity="false">
+	    <level value="debug" />
+	    <appender-ref ref="YET"/>
+	</logger>
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="TEST" />
+		<appender-ref ref="stdout" />
+	</root>
+	
+</log4j:configuration>
